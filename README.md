@@ -1,5 +1,5 @@
-# poc-scaffolding-aws-lambda
-En esto repo se hace una poc para la generación de lambdas en java para AWS Lambda con Micronaut. 
+# spike-yeoman-aws-lambda
+En esto repo se hace un ejemplo práctico para la generación de lambdas en java para AWS Lambda con Micronaut. 
 
 Presentación sobre scaffolding: [Link Presentación](https://drive.google.com/file/d/1VPAdKpWtnrwXNOUBDUBetq0ytdg4Q65b/view?usp=sharing).
 
@@ -16,9 +16,11 @@ Forzar sistemáticamente ciertas restricciones a nivel de arquitectura de aplica
 brinda algún tipo de estructura (rápida, simplificada, a veces externa, a veces temporal) para un proyecto, en la que puede confiar para construir el proyecto real más complejo .. Y al igual que el andamio real, la estructura del andamio está destinada a apoyar el proceso de construcción del proyecto, en lugar del proyecto en sí (con algunas excepciones).
 
 Los generadores de Yeoman son modulos de node.js
+
 ```sh
 npm install -g yo
 ```
+
 ## Modelo Yeoman
 ### Run loop
 
@@ -149,25 +151,24 @@ TODO
 
 ### ¿Cómo se agrega un componente? Ejemplo práctico generador clientws-rest
 
-TODO
-
-## Ventajas y desventajas del uso de Yeoman para generación de componentes Java.
+### Ventajas:
 
 El template se gestiona cómo una biblioteca nodejs. 
 
-- ¿Qué dificultades tendría para integrarlo en un proceso de CI/CD basado en Gradle?
-
-### Ventajas:
-
 Permite normalizar la creación de microservicios o funciones, reduciendo la variabildad innecesaria, principio fundamental para la creación de arquitectruas evolutivas.
 
-### Desventajas:
+- ¿Qué dificultades tendría para integrarlo en un proceso de CI/CD basado en Gradle?
+
+
+### Desventajas:
 
 Puede ser realmente complejo, agregar código sobre una base previamente creada, y más aún si esta base no 
 fue generada automáticamente por el mismo generador.
 
 El nivel de personalización puede agregar complejidad innecesaria, hay que tener mucho cuidado al elegir que es configurable.
 Siempre es útil guiarnos por el patrón de 'Convención sobre configuración' para evitar incrementar accidentalmenta la complejidad.
+
+No es fácil crear generadores para ambientes brownfield, ya que sería necesario 'parsear' el código existente para agregar las modificaciones correctamente. Esta fuera del alcance de este repo, sin embargo podría explorarse el uso de herramientas como JavaParser o Spoon para estos fines.
 
 
 ## Referencias
