@@ -1,0 +1,34 @@
+
+allprojects {
+
+    apply plugin: 'java'
+
+    sourceCompatibility = targetCompatibility = "$javaVersion"
+
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    artifacts {
+        archives jar
+    }
+
+    /**
+     * https://guides.gradle.org/performance/
+     */
+    tasks.withType(JavaCompile) {
+        options.incremental = true
+        options.fork = true
+    }
+}
+
+subprojects {
+
+    task buildZip(type: Zip) {
+        from compileJava
+        from processResources
+        into('lib') {
+            from configurations.compileClasspath
+        }
+    }
+
+    build.dependsOn buildZip
+}

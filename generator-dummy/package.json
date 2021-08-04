@@ -1,0 +1,23 @@
+{
+  "name": "generator-dummy",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^5.3.0"
+  },
+  "devDependencies": {
+    "mocha": "^9.0.1",
+    "yeoman-assert": "^3.1.1",
+    "yeoman-environment": "^3.4.1",
+    "yeoman-test": "^6.1.0"
+  }
+}

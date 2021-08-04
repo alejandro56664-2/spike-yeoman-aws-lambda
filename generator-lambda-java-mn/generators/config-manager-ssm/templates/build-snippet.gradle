@@ -1,0 +1,4 @@
+// dependencies: config-manager-ssm
+dependencies {
+    // TODO agregar dependencias a aws
+}

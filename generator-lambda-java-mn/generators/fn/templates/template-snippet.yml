@@ -1,0 +1,11 @@
+  <%= functionNameCamelCase %>:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: <%= pkgBase %>.controller.LambdaController::execute
+      Runtime: java8
+      CodeUri: './<%= functionName %>/build/distributions/<%= functionName %>-<%= appVersion %>.zip'
+      MemorySize: 512
+      Timeout: 30
+      Environment:
+        Variables:
+          ENVIRONMENT: 'dev'

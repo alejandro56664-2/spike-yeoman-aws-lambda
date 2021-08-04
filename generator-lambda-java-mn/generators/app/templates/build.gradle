@@ -1,0 +1,53 @@
+apply from: "java-lambdas-project.gradle"
+
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+
+    dependencies {
+        classpath "io.franzbecker:gradle-lombok:$gradleLombokVersion"
+    }
+}
+
+allprojects {
+    apply plugin: "io.franzbecker.gradle-lombok"
+    test {
+        useJUnitPlatform()
+    }
+}
+
+configurations.all {
+    all*.transitive = true
+}
+
+subprojects {
+    dependencies {
+        implementation(group: 'io.micronaut', name: 'micronaut-validation', version: "${micronautVersion}")
+        implementation(group: 'io.micronaut', name: 'micronaut-runtime', version: "${micronautVersion}")
+        implementation(group: 'io.micronaut', name: 'micronaut-inject', version: "${micronautVersion}")
+        implementation(group: 'ch.qos.logback', name: 'logback-classic', version: "${logbackClassicVersion}")
+
+        compileOnly(group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}")
+        annotationProcessor(group: 'org.projectlombok', name: 'lombok', version: "${lombokVersion}")
+        annotationProcessor(group: 'io.micronaut', name: 'micronaut-inject-java', version: "${micronautVersion}")
+
+        testImplementation(group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: "${junitVersion}")
+        testRuntimeOnly(group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: "${junitVersion}")
+        testImplementation(group: 'org.mockito', name: 'mockito-junit-jupiter', version: "${mockitoVersion}")
+        testImplementation(group: 'org.jacoco', name: 'org.jacoco.core', version: "${jacocoVersion}")
+        testImplementation(group: 'com.tngtech.archunit', name: 'archunit', version: "${archunitVersion}")
+    }
+}
+
+
+test {
+    useJUnitPlatform()
+}
+
+task publishCurrent {
+    dependsOn('artifactoryPublish')
+}
