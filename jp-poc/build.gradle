@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'org.alejandro56664'
+version '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group:'com.github.javaparser',name:'javaparser-symbol-solver-core', version:"${jpVersion}"
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+}
