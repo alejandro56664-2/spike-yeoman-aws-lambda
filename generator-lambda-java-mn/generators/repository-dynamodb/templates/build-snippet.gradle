@@ -1,4 +1,5 @@
 // dependencies: repository-dynamodb
 dependencies {
-    implementation(group: 'com.amazonaws', name: 'aws-java-sdk-dynamodb', version: "${awsDynamoVersion}")
+    implementation(group: 'software.amazon.awssdk', name: 'dynamodb', version: "${awsDynamoDBVersion}")
+    implementation(group: 'software.amazon.awssdk', name: 'dynamodb-enhanced', version: "${awsDynamoDBVersion}")
 }
