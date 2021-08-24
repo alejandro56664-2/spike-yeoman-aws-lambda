@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import <%= pkgBase %>.model.response.Response;
 import <%= pkgBase %>.config.ConfigRetriever;
 import <%= pkgBase %>.service.I<%= serviceName %>Service;

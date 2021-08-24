@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import io.micronaut.core.annotation.Introspected;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

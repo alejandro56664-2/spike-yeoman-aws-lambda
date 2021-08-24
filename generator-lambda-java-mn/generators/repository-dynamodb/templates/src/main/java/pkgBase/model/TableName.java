@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,18 +18,17 @@ import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbSortK
 @DynamoDbBean
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class <%= tableName %> {
-  String <%= partitionKey %>;
-  String <%= sortKey %>;
-  String name;
+  String <%= hashKey %>;
+  String <%= rangeKey %>;
   //TODO: agregue los campos necesarios
 
   @DynamoDbPartitionKey
-  public String get<%= partitionKey %>() {
-    return <%= partitionKey %>;
+  public String get<%= HashKey %>() {
+    return <%= hashKey %>;
   }
 
   @DynamoDbSortKey
-  public String get<%= sortKey %>() {
-    return <%= sortKey %>;
+  public String get<%= RangeKey %>() {
+    return <%= rangeKey %>;
   }
 }

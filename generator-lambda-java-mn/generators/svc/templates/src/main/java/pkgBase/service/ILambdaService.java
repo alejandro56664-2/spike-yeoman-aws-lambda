@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import <%= pkgBase %>.model.response.Response;
 
 public interface I<%= serviceName %>Service {

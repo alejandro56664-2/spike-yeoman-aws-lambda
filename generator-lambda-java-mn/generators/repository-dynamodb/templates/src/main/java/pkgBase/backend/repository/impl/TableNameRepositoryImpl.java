@@ -1,8 +1,10 @@
 package <%= fullPkg %>;
-
+ 
 import <%= pkgBase %>.model.<%= tableName %>;
-import <%= pkgBase %>.repository.I<%= tableName %>Repository;
+import <%= pkgBase %>.backend.repository.I<%= tableName %>Repository;
 import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,7 +22,8 @@ import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
 @Slf4j
 public class <%= tableName %>RepositoryImpl implements I<%= tableName %>Repository {
 
-  public <%= tableName %> save(@Valid <%= tableName %> obj) {
+    @Override
+    public <%= tableName %> save(@Valid <%= tableName %> obj) {
 
         val table = dynamoDbTable();
         val register = <%= tableName %>.builder()
@@ -31,6 +34,7 @@ public class <%= tableName %>RepositoryImpl implements I<%= tableName %>Reposito
         return register;
     }
 
+    @Override
     public List<<%= tableName %>> findAll() {
         val registers = new ArrayList<<%= tableName %>>();
         val table = dynamoDbTable();
@@ -41,22 +45,30 @@ public class <%= tableName %>RepositoryImpl implements I<%= tableName %>Reposito
         return registers;
     }
 
-    public Optional<<%= tableName %>> findOne(String name) {
+    @Override
+    public Optional<<%= tableName %>> findOne(String <%= hashKey %>, String  <%= rangeKey %>) {
         val table = dynamoDbTable();
-        val key = Key.builder().partitionValue(AttributeValue.builder().s(name).build()).build();
+        val key = Key.builder()
+            .partitionValue(AttributeValue.builder().s(hashKey).build())
+            .sortValue(AttributeValue.builder().s(rangeKey).build())
+            .build();
         return Optional.ofNullable(table.getItem( r -> r.key(key)));
     }
 
-    public Optional<<%= tableName %>>  deleteOne(String name) {
+    @Override
+    public Optional<<%= tableName %>>  deleteOne(String <%= hashKey %>, String  <%= rangeKey %>) {
         val table = dynamoDbTable();
-        val key = Key.builder().partitionValue(AttributeValue.builder().s(name).build()).build();
+        val key = Key.builder()
+            .partitionValue(AttributeValue.builder().s(hashKey).build())
+            .sortValue(AttributeValue.builder().s(rangeKey).build())
+            .build();
         return Optional.ofNullable(table.deleteItem (r -> r.key(key) ));
     }
 
-    private DynamoDbTable<<%= tableName %>> dynamoDbTable() {
+    protected DynamoDbTable<<%= tableName %>> dynamoDbTable() {
         //TODO considere agregar estos parametros en el parameter store
-        String tableName = System.getenv("DYNAMO_DB_TABLE_NAME");
-        String envRegion = System.getenv("AWS_REGION");
+        String tableName = System.getProperty("DYNAMO_DB_TABLE_NAME");
+        String envRegion = System.getProperty("AWS_REGION");
         Region region = Region.of(envRegion);
 
         val dynamoDbClient = DynamoDbClient.builder()

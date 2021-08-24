@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import <%= pkgBase %>.model.request.Request;
 import <%= pkgBase %>.model.response.Response;
 import <%= pkgBase %>.service.ILambdaService;

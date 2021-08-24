@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.lang.ArchRule;
@@ -14,13 +14,14 @@ class LayeredArchitectureTest {
     JavaClasses importedClasses = new ClassFileImporter().importPackages("<%= pkgBase %>");
 
     ArchRule layer_dependencies_are_respected = layeredArchitecture()
+        //TODO recuerde eliminar los comentarios o agregarlos cuando agregue componentes de backend.
         .layer("Controllers").definedBy("<%= pkgBase %>.controller..")
         .layer("Services").definedBy("<%= pkgBase %>.service..")
-        .layer("Backend").definedBy("<%= pkgBase %>.backend..")
+        //.layer("Backend").definedBy("<%= pkgBase %>.backend..")
 
         .whereLayer("Controllers").mayNotBeAccessedByAnyLayer()
-        .whereLayer("Services").mayOnlyBeAccessedByLayers("Controllers")
-        .whereLayer("Backend").mayOnlyBeAccessedByLayers("Services");
+        .whereLayer("Services").mayOnlyBeAccessedByLayers("Controllers");
+        //.whereLayer("Backend").mayOnlyBeAccessedByLayers("Services");
 
     layer_dependencies_are_respected.check(importedClasses);
 

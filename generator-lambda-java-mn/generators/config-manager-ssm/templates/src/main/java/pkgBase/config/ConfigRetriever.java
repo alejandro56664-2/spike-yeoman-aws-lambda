@@ -1,11 +1,12 @@
 package <%= fullPkg %>;
-
+ 
 import <%= pkgBase %>.model.Configuration;
 import <%= pkgBase %>.enums.ParamKey;
 import io.micronaut.core.annotation.Introspected;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import javax.inject.Singleton;
@@ -19,7 +20,7 @@ public class ConfigRetriever {
   Configuration config;
 
   public ConfigRetriever() {
-    
+    //TODO agregar código de inicialización
   }
 
   public Optional<Configuration> getConfiguration() {
@@ -35,7 +36,7 @@ public class ConfigRetriever {
     return Optional.ofNullable(config);
   }
 
-  private Optional<Map<String, String>> getParameters() throws ParameterStoreTransactionErrorException {
+  private Optional<Map<String, String>> getParameters() {
     List<String> paramKeys = Arrays.stream(ParamKey.values())
         .map(ParamKey::getValue)
         .collect(Collectors.toList());
@@ -47,12 +48,13 @@ public class ConfigRetriever {
 
   private Map<String, String> getParamsMap(List<String> paramKeys, String functionName) {
     //TODO implementar con la dependencias a aws
+    return new HashMap<String, String>();
   }
 
   private Configuration toConfiguration(Map<String, String> params) {
     return Configuration.builder()
         // TODO: Por favor agregue los parametros necesarios
-        .appName(params.get(ParamKey.APPLICATION_NAME.getValue()))
+        .appName(params.get(ParamKey.FUNCTION_NAME.getValue()))
         .build();
   }
 }

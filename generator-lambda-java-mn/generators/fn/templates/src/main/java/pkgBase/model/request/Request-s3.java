@@ -1,5 +1,5 @@
 package <%= fullPkg %>;
-
+ 
 import io.micronaut.core.annotation.Introspected;
 import com.amazonaws.services.lambda.runtime.events.S3Event;
 
