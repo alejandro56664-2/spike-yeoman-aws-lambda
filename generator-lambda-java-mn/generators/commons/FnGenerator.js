@@ -114,8 +114,9 @@ module.exports = class extends Generator {
       this.fs.exists(this.destinationPath(destinyFile));
 
     if (
-      !(snippetsExist(sourceSnippetTplPath) &&
-      destinyExist(destinationFilePath))
+      !(
+        snippetsExist(sourceSnippetTplPath) && destinyExist(destinationFilePath)
+      )
     ) {
       this.log(
         `No se puede agregar el fragmento '${sourceSnippetTplPath}' al archivo '${destinationFilePath}'.`
@@ -191,7 +192,7 @@ module.exports = class extends Generator {
   _readAndDelete(configKey) {
     const result = this.config.get(configKey);
     this.config.delete(configKey);
-    if(result) {
+    if (result) {
       this.log(`Leyendo y eliminando: ${configKey}: ${result}`);
     }
     return result;

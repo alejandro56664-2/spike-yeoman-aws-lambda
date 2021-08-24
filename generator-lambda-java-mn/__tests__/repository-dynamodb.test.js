@@ -10,7 +10,7 @@ describe("generator-java-mn-lambda:repository-dynamodb", () => {
     return helpers
       .run(path.join(__dirname, "../repository-dynamodb"))
       .withOptions({
-        invokedFromBackendManager: false, //esto evita preguntar a que función agregar el repo
+        invokedFromBackendManager: false, // esto evita preguntar a que función agregar el repo
         useThisGenerator: true,
       })
       .withLocalConfig({
@@ -39,7 +39,7 @@ describe("generator-java-mn-lambda:repository-dynamodb", () => {
       "my-function/src/main/java/co/demo/projectName/myfunction/model/Table.java",
 
       // test files
-      //"my-function/src/test/java/co/demo/projectName/myfunction/backend/repository/impl/TableRepositoryImplTest.java"
+      // "my-function/src/test/java/co/demo/projectName/myfunction/backend/repository/impl/TableRepositoryImplTest.java"
     ]);
   });
 });

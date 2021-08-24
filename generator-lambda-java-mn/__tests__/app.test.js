@@ -35,7 +35,7 @@ describe("generator-java-mn-lambda:app", () => {
       ".gitattributes",
       ".gitignore",
 
-      //gradle stuff
+      // gradle stuff
       "gradle/wrapper/gradle-wrapper.jar",
       "gradle/wrapper/gradle-wrapper.properties",
       "gradlew",
