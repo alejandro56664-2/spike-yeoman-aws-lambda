@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.SetSystemProperty;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 
-class TableDynamoRepositoryImplTest {
+class <%= tableName %>RepositoryImplTest {
 
   // Hay que tener en cuenta que nuestro repository básicamente es un wrapper para
   // el Objeto DynamoDBTable, por lo que estas pruebas solo sirven para evitar tener una métrica
