@@ -39,11 +39,15 @@ module.exports = class extends FnGenerator {
       this.props.projectName = this.config.get("projectName");
       this.props.appVersion = this.config.get("appVersion");
 
-      // actualizamos el paquete base PELIGROSA MUTACIÓN mucho cuidado
       this.props.functionNameCamelCase = this._toCamelCase(
         this.props.functionName
       );
-      this.props.pkgBase = `${this.props.pkgBase}.${this.props.functionNameCamelCase}`;
+
+      // actualizamos el paquete base PELIGROSA MUTACIÓN mucho cuidado
+      this.props.pkgBase = `${this.props.pkgBase}.${this._toPkg(
+        this.props.functionName
+      )}`;
+
       this.log("usamos temporalmente pkgBase como: " + this.props.pkgBase);
 
       const functionsList = this.config.get("functionsList") || [];
@@ -190,5 +194,14 @@ module.exports = class extends FnGenerator {
 
     const nameWithoutSuffix = nameWithSuffix.replace(/-[a-z0-9]+/g, ""); // Nombre
     return `${nameWithoutSuffix}.${ext}`; // Nombre.ext
+  }
+
+  /**
+   * Remueve '_' y '-' entre otros caracteres (TODO) en el nombre de la función
+   * @param {String} strInput cadena de entrada
+   * @return {String} retorna la cadena formateada
+   */
+  _toCamelCase(strInput) {
+    return strInput.replace(/-/g, "");
   }
 };

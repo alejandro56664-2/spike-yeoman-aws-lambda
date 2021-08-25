@@ -1,8 +1,8 @@
 
 ## Run <%= functionName %> local with SAM
 
-Handler: <%= pkgBase %>.<%=  %>.controller.LambdaController::execute
+Handler: <%= pkgBase %>.controller.LambdaController::execute
 
 ```bash
-sam local invoke <%=  %> --event ./<%= eventFile %>
+sam local invoke <%= functionNameCamelCase %> --event ./<%= eventFile %>
 ```

@@ -48,7 +48,8 @@ public class ConfigRetriever {
 
   private Map<String, String> getParamsMap(List<String> paramKeys, String functionName) {
     //TODO implementar con la dependencias a aws
-    return new HashMap<String, String>();
+    log.debug("Se consultan los parametros definidos por {} para la función: {}", paramKeys, functionName);
+    return new HashMap<>();
   }
 
   private Configuration toConfiguration(Map<String, String> params) {

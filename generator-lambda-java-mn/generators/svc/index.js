@@ -59,7 +59,7 @@ module.exports = class extends FnGenerator {
         this.props.functionName = this.config.get("functionName");
       }
 
-      this.props.pkgBase = `${this.config.get("pkgBase")}.${this._toCamelCase(
+      this.props.pkgBase = `${this.config.get("pkgBase")}.${this._toPkg(
         this.props.functionName
       )}`;
       this.log(

@@ -159,9 +159,19 @@ module.exports = class extends Generator {
     // aquí hay una oportunidad de mejora, idealmente el estado debería permanecer en la fuente misma de verdad
     // que deberían ser los archivos gradle, sin embargo 'parsearlos' puede agregar una complejidad innecesaria.
     // obtenemos el objeto con las dependencias:
-    const functionDependencies = this.config.get(functionName) || {};
-    const dependenciesNotAppended = !functionDependencies[flagName];
-    if (dependenciesNotAppended) {
+
+    const functionDependencies = (fnName) => this.config.get(fnName) || {};
+    const dependenciesNotAppendedFor = (fnName) =>
+      !functionDependencies(fnName)[flagName];
+
+    const dependenciesNotAppendedForOthers = () => {
+      return this.config
+        .get("functionsList")
+        .map((fnName) => dependenciesNotAppendedFor(fnName))
+        .reduce((a, cv) => a && cv);
+    };
+
+    if (dependenciesNotAppendedFor(functionName)) {
       this.log(
         `Se intenta agregar las ${flagName} locales los archivos gradle, para la función: ${functionName}`
       );
@@ -172,15 +182,19 @@ module.exports = class extends Generator {
         `${functionName}/build.gradle`
       );
 
-      this._appendHelper(
-        props,
-        "gradle-snippet.properties",
-        "gradle.properties"
-      );
+      // Las propiedades solo se agregan una vez, común a todas las funciones.
+      if (dependenciesNotAppendedForOthers()) {
+        this._appendHelper(
+          props,
+          "gradle-snippet.properties",
+          "gradle.properties"
+        );
+      }
 
       // agregamos el estado actualizado a la configuración
-      functionDependencies[flagName] = true;
-      this.config.set(functionName, functionDependencies);
+      const dependencies = functionDependencies(functionName);
+      dependencies[flagName] = true;
+      this.config.set(functionName, dependencies);
     }
   }
 
@@ -209,12 +223,12 @@ module.exports = class extends Generator {
   }
 
   /**
-   * Remueve '_' y '-' entre otros caracteres (TODO) en el nombre de la función
+   * Reemplaza '-' por '.' en el nombre de la función
    * @param {String} strInput cadena de entrada
    * @return {String} retorna la cadena formateada
    */
-  _toCamelCase(strInput) {
-    return strInput.replace(/-/g, "");
+  _toPkg(strInput) {
+    return strInput.replace(/[-_]/g, ".");
   }
 
   /**
