@@ -51,7 +51,6 @@ describe("generator-java-mn-lambda:backend repository-dynamodb", () => {
   });
 
   it("change config", () => {
-    //evaluar que se guarda en configuración la bandera de la configuración 
-   
+    //evaluar que se guarda en configuración la bandera de la configuración
   });
 });

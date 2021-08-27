@@ -16,19 +16,19 @@ describe("generator-java-mn-lambda:svc", () => {
       .withPrompts({
         // backend propmts
         functionName: "my-function",
-        serviceName: "Backend"
+        serviceName: "Backend",
       });
   });
 
   it("crea archivos", () => {
     assert.file([
-    //Evaluar que no debe crear archivos
-    "my-function/src/main/java/co/demo/projectName/my/function/service/IBackendService.java",
-    "my-function/src/main/java/co/demo/projectName/my/function/service/impl/BackendServiceImpl.java",
+      //Evaluar que no debe crear archivos
+      "my-function/src/main/java/co/demo/projectName/my/function/service/IBackendService.java",
+      "my-function/src/main/java/co/demo/projectName/my/function/service/impl/BackendServiceImpl.java",
 
-    // test files
-    "my-function/src/test/java/co/demo/projectName/my/function/service/impl/BackendServiceImplTest.java"
-    ])
+      // test files
+      "my-function/src/test/java/co/demo/projectName/my/function/service/impl/BackendServiceImplTest.java",
+    ]);
   });
 });
 
@@ -45,7 +45,7 @@ describe("generator-java-mn-lambda:svc failed", () => {
       .withPrompts({
         // backend propmts
         functionName: "my-function",
-        serviceName: "Lambda"
+        serviceName: "Lambda",
       });
   });
 
@@ -54,9 +54,9 @@ describe("generator-java-mn-lambda:svc failed", () => {
       //Evaluar que no debe crear archivos
       "my-function/src/main/java/co/demo/projectName/my/function/service/IBackendService.java",
       "my-function/src/main/java/co/demo/projectName/my/function/service/impl/BackendServiceImpl.java",
-  
+
       // test files
-      "my-function/src/test/java/co/demo/projectName/my/function/service/impl/BackendServiceImplTest.java"
-      ])
+      "my-function/src/test/java/co/demo/projectName/my/function/service/impl/BackendServiceImplTest.java",
+    ]);
   });
 });

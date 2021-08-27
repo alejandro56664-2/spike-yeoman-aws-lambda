@@ -128,4 +128,3 @@ describe("generator-java-mn-lambda:app sin gradlew", () => {
     ]);
   });
 });
-
