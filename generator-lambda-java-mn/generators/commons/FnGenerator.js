@@ -213,16 +213,6 @@ module.exports = class extends Generator {
   }
 
   /**
-   * Valida si el nombre ingresado no tiene espacios o simbolos.
-   * @param {String} name cadena de texto que representa un objeto en java
-   * @return {Boolean} retorna verdadero o falso, de acuerdo a la validación
-   */
-  _validateCamelCase(name) {
-    // TODO
-    return true;
-  }
-
-  /**
    * Reemplaza '-' por '.' en el nombre de la función
    * @param {String} strInput cadena de entrada
    * @return {String} retorna la cadena formateada

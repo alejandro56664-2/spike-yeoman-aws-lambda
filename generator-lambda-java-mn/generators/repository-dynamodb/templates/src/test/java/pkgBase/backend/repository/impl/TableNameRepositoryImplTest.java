@@ -1,5 +1,12 @@
 package <%= fullPkg %>;
-
+/**
+ * Grupo Aval Acciones y Valores S.A. CONFIDENTIAL
+ *
+ * <p>Copyright (c) 2018 . All Rights Reserved.
+ *
+ * <p>NOTICE: This file is subject to the terms and conditions defined in file 'LICENSE', which is
+ * part of this source code package.
+ */
 import static org.junit.jupiter.api.Assertions.*;
 import co.com.dummy.myfunction.model.TableDynamo;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +26,7 @@ class <%= tableName %>RepositoryImplTest {
   @SetSystemProperty(key = "AWS_REGION", value = "us-east-2")
   void saveTest() {
     // Arrange
-    TableDynamoRepositoryImpl repo = new TableDynamoRepositoryImpl();
+    <%= tableName %>RepositoryImpl repo = new <%= tableName %>RepositoryImpl();
 
     // Act
     DynamoDbTable<TableDynamo> result = repo.dynamoDbTable();

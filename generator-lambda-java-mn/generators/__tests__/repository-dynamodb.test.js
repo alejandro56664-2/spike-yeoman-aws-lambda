@@ -34,12 +34,12 @@ describe("generator-java-mn-lambda:repository-dynamodb", () => {
     // agregar Controller, Service, ControllerTest, ServiceTest
     assert.file([
       // source files
-      "my-function/src/main/java/co/demo/projectName/myfunction/backend/repository/impl/TableRepositoryImpl.java",
-      "my-function/src/main/java/co/demo/projectName/myfunction/backend/repository/ITableRepository.java",
-      "my-function/src/main/java/co/demo/projectName/myfunction/model/Table.java",
+      "my-function/src/main/java/co/demo/projectName/my/function/backend/repository/impl/TableRepositoryImpl.java",
+      "my-function/src/main/java/co/demo/projectName/my/function/backend/repository/ITableRepository.java",
+      "my-function/src/main/java/co/demo/projectName/my/function/model/Table.java",
 
       // test files
-      //"my-function/src/test/java/co/demo/projectName/myfunction/backend/repository/impl/TableRepositoryImplTest.java"
+      //"my-function/src/test/java/co/demo/projectName/my/function/backend/repository/impl/TableRepositoryImplTest.java"
     ]);
   });
 });

@@ -184,9 +184,8 @@ module.exports = class extends FnGenerator {
    */
   _removeNameSuffix(strInput) {
     const dotSplit = strInput.split(".");
-    if (dotSplit.length != 2) {
-      return strInput;
-    }
+
+    //Deberiamos validar si dotSplit.length != 2
 
     // separamos el nombre y la extensión
     const ext = dotSplit[1]; // .ext

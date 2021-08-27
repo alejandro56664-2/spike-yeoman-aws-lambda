@@ -39,7 +39,6 @@ module.exports = class extends FnGenerator {
         name: "serviceName",
         message: '¿Cuál es el nombre del "service" (sin espacios y CamelCase)?',
         default: "MyService",
-        validate: (res) => this._validateCamelCase(res) && res !== "Lambda", // Solo puede haber un servicio Lambda
         // solo se pregunta el nombre cuando no fue pasado por argumento o no está en la configuración
         when: (_) =>
           this.options.invokedFromFnController === null ||
@@ -74,17 +73,6 @@ module.exports = class extends FnGenerator {
   writing() {
     // se copia el archivo fuente de la función con un controlador
     this._copySrc(this.props);
-  }
-
-  /**
-   * Método privado que permite identificar si el nombre del servicio No se encuentra
-   * en el objeto Opts. Esto es debido a que se puede invocar el generador svc para
-   * contextos Brownfield y el nombre del servicio puede llegar por una bandera de opción
-   * en el cli.
-   * @return {Boolean}
-   */
-  _serviceNameNotInOpts() {
-    return Object.prototype.hasOwnProperty.call(this.options, "serviceName");
   }
 
   /**
