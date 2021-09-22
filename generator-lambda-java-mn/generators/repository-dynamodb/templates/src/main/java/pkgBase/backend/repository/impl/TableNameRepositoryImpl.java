@@ -49,8 +49,8 @@ public class <%= tableName %>RepositoryImpl implements I<%= tableName %>Reposito
     public Optional<<%= tableName %>> findOne(String <%= hashKey %>, String  <%= rangeKey %>) {
         val table = dynamoDbTable();
         val key = Key.builder()
-            .partitionValue(AttributeValue.builder().s(hashKey).build())
-            .sortValue(AttributeValue.builder().s(rangeKey).build())
+            .partitionValue(AttributeValue.builder().s(<%= hashKey %>).build())
+            .sortValue(AttributeValue.builder().s(<%= rangeKey %>).build())
             .build();
         return Optional.ofNullable(table.getItem( r -> r.key(key)));
     }
@@ -59,8 +59,8 @@ public class <%= tableName %>RepositoryImpl implements I<%= tableName %>Reposito
     public Optional<<%= tableName %>>  deleteOne(String <%= hashKey %>, String  <%= rangeKey %>) {
         val table = dynamoDbTable();
         val key = Key.builder()
-            .partitionValue(AttributeValue.builder().s(hashKey).build())
-            .sortValue(AttributeValue.builder().s(rangeKey).build())
+            .partitionValue(AttributeValue.builder().s(<%= hashKey %>).build())
+            .sortValue(AttributeValue.builder().s(<%= rangeKey %>).build())
             .build();
         return Optional.ofNullable(table.deleteItem (r -> r.key(key) ));
     }

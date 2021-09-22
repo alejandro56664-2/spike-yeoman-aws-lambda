@@ -20,16 +20,16 @@ public interface I<%= tableName %>Repository {
 
   /**
    * Encuentra exactamente el objeto usando la llave primaria y secundaria
-   * @param hashKey Llave primaria 
-   * @param rangeKey Llave primaria 
+   * @param <%= hashKey %> Llave primaria 
+   * @param <%= rangeKey %> Llave primaria 
    * @return Optional retorna un objeto opcional.
    */
   Optional<<%= tableName %>> findOne(String <%= hashKey %>, String  <%= rangeKey %>);
 
   /**
    * elimina un objeto usando la llave primaria y secundaria
-   * @param hashKey Llave primaria 
-   * @param rangeKey Llave primaria 
+   * @param <%= hashKey %> Llave primaria 
+   * @param <%= rangeKey %> Llave primaria 
    * @return Optional retorna un objeto opcional.
    */
   Optional<<%= tableName %>> deleteOne(String <%= hashKey %>, String  <%= rangeKey %>);
