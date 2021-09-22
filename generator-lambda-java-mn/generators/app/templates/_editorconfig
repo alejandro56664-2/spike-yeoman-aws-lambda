@@ -1,8 +1,28 @@
-# Default to normalize to LF if core.autocrlf is not set
-* text=auto
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# http://editorconfig.org
 
-# Always use crlf line endings Gradle .bat file
-gradlew.bat text eol=crlf
+root = true
 
-# Mark Gradle wrapper as a binary
-gradle/wrapper/gradle-wrapper.jar binary
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false
+
+[*.java]
+indent_size = 2
+
+[*.json]
+indent_size = 2
+
+[*.gradle]
+indent_size = 4
+
+[*.xml]
+indent_size = 2
