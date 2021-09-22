@@ -1,5 +1,5 @@
 {
-  "name": "generator-java-mn-lambda",
+  "name": "generator-lambda-java-mn",
   "version": "1.0.0",
   "description": "Generador de Yeoman para funciones lambda con Java y Micronaut",
   "homepage": "",
